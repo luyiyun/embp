@@ -8,8 +8,8 @@ In this study, we introduce a novel EM-based Biomarker Pooling (EMBP) method to 
 # We suggest creating a separate environment. Below is an example using mamba (fast alternative of conda)
 mamba create -n embp_env python=3.12 -y
 mamba activate embp_env
-# Install BBP package from github
-pip install git+https://github.com/luyiyun/embp.git@main
+# Install embp package from github
+pip install git+https://github.com/luyiyun/embp.git@master
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ W = dat["W"].values
 Y = dat["Y"].values
 
 # fit model
-model = EMBP(outcome_type="binary")
+model = EMBP(outcome_type="continue")
 model.fit(X, S, W, Y)
 print(model.params_)
 ```
