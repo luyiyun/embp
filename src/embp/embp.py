@@ -30,11 +30,13 @@ def bootstrap_estimator(
     assert hasattr(estimator, "params_"), "please run regular EM iteration firstly!"
     init_params = estimator.params_
     estimator._pbar = False
+    seed = np.random.default_rng(seed)
 
     if init_disturb is not None:
-        init_params = init_params + init_disturb * np.random.randn(init_params.shape[0])
+        init_params = init_params + init_disturb * seed.normal(
+            size=init_params.shape[0]
+        )
 
-    seed = np.random.default_rng(seed)
     ind_bootstrap = seed.choice(Y.shape[0], (n_repeat, Y.shape[0]), replace=True)
 
     params_bs = []
